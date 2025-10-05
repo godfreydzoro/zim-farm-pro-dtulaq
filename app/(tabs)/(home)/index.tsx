@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, View, Text, Alert, Platform, TouchableOpacity } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
 import { IconSymbol } from "@/components/IconSymbol";
@@ -14,6 +14,7 @@ import { sampleWeatherData, sampleCrops, sampleAlerts } from "@/data/zimbabweDat
 
 export default function HomeScreen() {
   const theme = useTheme();
+  const router = useRouter();
   const [selectedProvince, setSelectedProvince] = useState('Harare');
 
   const quickActions = [
@@ -23,7 +24,7 @@ export default function HomeScreen() {
       description: 'Map your field boundaries',
       icon: 'map.fill',
       color: colors.primary,
-      onPress: () => Alert.alert('Field Mapping', 'Note: react-native-maps is not supported in Natively. This feature would normally show an interactive map of Zimbabwe with field boundary mapping capabilities.')
+      onPress: () => router.push('/(tabs)/field-mapping')
     },
     {
       id: '2',

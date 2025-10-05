@@ -16,6 +16,12 @@ export default function TabLayout() {
       label: 'Home',
     },
     {
+      name: 'field-mapping',
+      route: '/(tabs)/field-mapping',
+      icon: 'map.fill',
+      label: 'Fields',
+    },
+    {
       name: 'crops',
       route: '/(tabs)/crops',
       icon: 'leaf.fill',
@@ -43,6 +49,10 @@ export default function TabLayout() {
           <Icon sf="house.fill" drawable="ic_home" />
           <Label>Home</Label>
         </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="field-mapping">
+          <Icon sf="map.fill" drawable="ic_map" />
+          <Label>Fields</Label>
+        </NativeTabs.Trigger>
         <NativeTabs.Trigger name="crops">
           <Icon sf="leaf.fill" drawable="ic_crops" />
           <Label>Crops</Label>
@@ -69,6 +79,7 @@ export default function TabLayout() {
         }}
       >
         <Stack.Screen name="(home)" />
+        <Stack.Screen name="field-mapping" />
         <Stack.Screen name="crops" />
         <Stack.Screen name="weather" />
         <Stack.Screen name="profile" />

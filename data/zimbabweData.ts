@@ -158,3 +158,105 @@ export const marketPrices = [
   { crop: 'Soybean', price: 450, unit: 'USD/tonne', change: '+8%' },
   { crop: 'Wheat', price: 380, unit: 'USD/tonne', change: '+2%' }
 ];
+
+export const soilTypeDescriptions = {
+  'Clay loam': {
+    description: 'Excellent water retention, good for most crops',
+    suitableCrops: ['Maize', 'Wheat', 'Barley'],
+    drainageLevel: 'Moderate',
+    fertility: 'High'
+  },
+  'Sandy loam': {
+    description: 'Well-draining, easy to work, good for tobacco',
+    suitableCrops: ['Tobacco', 'Cotton', 'Groundnuts'],
+    drainageLevel: 'Good',
+    fertility: 'Medium'
+  },
+  'Silt loam': {
+    description: 'Fertile soil with good moisture retention',
+    suitableCrops: ['Soybean', 'Maize', 'Vegetables'],
+    drainageLevel: 'Moderate',
+    fertility: 'High'
+  },
+  'Clay': {
+    description: 'Heavy soil, excellent for water retention',
+    suitableCrops: ['Rice', 'Sugarcane'],
+    drainageLevel: 'Poor',
+    fertility: 'High'
+  },
+  'Sandy clay': {
+    description: 'Moderate drainage with good nutrient retention',
+    suitableCrops: ['Cotton', 'Maize'],
+    drainageLevel: 'Moderate',
+    fertility: 'Medium'
+  },
+  'Well-drained': {
+    description: 'General well-draining soil suitable for most crops',
+    suitableCrops: ['Cotton', 'Barley', 'Wheat'],
+    drainageLevel: 'Excellent',
+    fertility: 'Medium'
+  },
+  'Fertile loam': {
+    description: 'Ideal soil for most agricultural purposes',
+    suitableCrops: ['Soybean', 'Maize', 'Vegetables', 'Tobacco'],
+    drainageLevel: 'Good',
+    fertility: 'Very High'
+  },
+  'Red clay': {
+    description: 'Iron-rich clay soil, common in Zimbabwe',
+    suitableCrops: ['Maize', 'Tobacco'],
+    drainageLevel: 'Poor to Moderate',
+    fertility: 'Medium to High'
+  },
+  'Black cotton soil': {
+    description: 'Vertisol soil, expands and contracts with moisture',
+    suitableCrops: ['Cotton', 'Sorghum', 'Millet'],
+    drainageLevel: 'Poor',
+    fertility: 'High'
+  }
+};
+
+export const zimbabweRegions = [
+  {
+    name: 'Harare Metropolitan',
+    provinces: ['Harare'],
+    dominantSoils: ['Red clay', 'Clay loam'],
+    averageRainfall: '800-1000mm',
+    mainCrops: ['Maize', 'Tobacco', 'Horticulture']
+  },
+  {
+    name: 'Mashonaland',
+    provinces: ['Mashonaland Central', 'Mashonaland East', 'Mashonaland West'],
+    dominantSoils: ['Clay loam', 'Sandy loam', 'Red clay'],
+    averageRainfall: '650-1200mm',
+    mainCrops: ['Tobacco', 'Maize', 'Cotton', 'Soybean']
+  },
+  {
+    name: 'Matabeleland',
+    provinces: ['Matabeleland North', 'Matabeleland South'],
+    dominantSoils: ['Sandy clay', 'Clay', 'Black cotton soil'],
+    averageRainfall: '400-650mm',
+    mainCrops: ['Cotton', 'Sorghum', 'Millet', 'Livestock']
+  },
+  {
+    name: 'Midlands',
+    provinces: ['Midlands'],
+    dominantSoils: ['Clay loam', 'Sandy loam'],
+    averageRainfall: '500-800mm',
+    mainCrops: ['Maize', 'Cotton', 'Tobacco']
+  },
+  {
+    name: 'Manicaland',
+    provinces: ['Manicaland'],
+    dominantSoils: ['Fertile loam', 'Clay loam'],
+    averageRainfall: '1000-2000mm',
+    mainCrops: ['Coffee', 'Tea', 'Bananas', 'Timber']
+  },
+  {
+    name: 'Masvingo',
+    provinces: ['Masvingo'],
+    dominantSoils: ['Sandy clay', 'Clay loam'],
+    averageRainfall: '450-700mm',
+    mainCrops: ['Maize', 'Cotton', 'Livestock']
+  }
+];
