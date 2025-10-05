@@ -164,6 +164,35 @@ export default function CropsScreen() {
           </Text>
         </View>
 
+        {/* Pest Identification Card */}
+        <View style={[commonStyles.card, styles.pestCard]}>
+          <View style={styles.pestHeader}>
+            <IconSymbol name="camera" size={24} color={colors.primary} />
+            <Text style={[commonStyles.subtitle, styles.pestTitle]}>AI Pest Identification</Text>
+          </View>
+          <Text style={commonStyles.text}>
+            Use your camera to identify pests, diseases, and weeds affecting your crops. Get instant recommendations for treatment and prevention.
+          </Text>
+          
+          <View style={styles.pestButtons}>
+            <TouchableOpacity
+              style={[styles.pestButton, styles.primaryButton]}
+              onPress={() => router.push('/pest-identification')}
+            >
+              <IconSymbol name="camera.fill" size={20} color={colors.card} />
+              <Text style={styles.pestButtonText}>Identify Pest</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              style={[styles.pestButton, styles.secondaryButton]}
+              onPress={() => router.push('/pest-database')}
+            >
+              <IconSymbol name="book.closed" size={20} color={colors.primary} />
+              <Text style={[styles.pestButtonText, { color: colors.primary }]}>Browse Database</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
         {/* Bottom spacing */}
         <View style={styles.bottomSpacing} />
       </ScrollView>
@@ -273,6 +302,46 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   calendarTitle: {
+    marginLeft: 8,
+  },
+  pestCard: {
+    backgroundColor: colors.highlight,
+    marginBottom: 16,
+  },
+  pestHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  pestTitle: {
+    marginLeft: 8,
+  },
+  pestButtons: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 12,
+  },
+  pestButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+  },
+  primaryButton: {
+    backgroundColor: colors.primary,
+  },
+  secondaryButton: {
+    backgroundColor: colors.card,
+    borderWidth: 1,
+    borderColor: colors.primary,
+  },
+  pestButtonText: {
+    color: colors.card,
+    fontSize: 14,
+    fontWeight: '600',
     marginLeft: 8,
   },
   bottomSpacing: {

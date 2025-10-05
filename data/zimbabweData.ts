@@ -405,3 +405,272 @@ export const zimbabweRegions = [
     mainCrops: ['Maize', 'Cotton', 'Livestock']
   }
 ];
+
+// Pest and Disease Database for Zimbabwe
+export const pestsAndDiseases = [
+  {
+    id: 'fall-armyworm',
+    name: 'Fall Armyworm',
+    type: 'pest' as const,
+    scientificName: 'Spodoptera frugiperda',
+    affectedCrops: ['Maize', 'Sorghum', 'Millet', 'Rice'],
+    description: 'A destructive pest that feeds on leaves, stems, and reproductive parts of plants.',
+    symptoms: [
+      'Irregular holes in leaves',
+      'Sawdust-like frass near feeding sites',
+      'Damaged growing points',
+      'Whorl feeding damage in maize'
+    ],
+    identificationFeatures: [
+      'Caterpillars with distinctive head markings',
+      'Dark stripes along the body',
+      'Four spots arranged in a square on the 8th segment',
+      'Inverted Y-shaped marking on head'
+    ],
+    treatments: {
+      organic: [
+        {
+          method: 'Neem oil spray',
+          dosage: '5ml per liter of water',
+          application: 'Spray in early morning or evening',
+          frequency: 'Every 7-10 days'
+        },
+        {
+          method: 'Bacillus thuringiensis (Bt)',
+          dosage: '2-3g per liter of water',
+          application: 'Spray on affected areas',
+          frequency: 'Every 5-7 days'
+        }
+      ],
+      chemical: [
+        {
+          product: 'Chlorpyrifos 480 EC',
+          dosage: '2ml per liter of water',
+          application: 'Foliar spray',
+          frequency: 'As needed, max 2 applications per season',
+          safetyPeriod: '14 days before harvest'
+        },
+        {
+          product: 'Emamectin benzoate',
+          dosage: '0.5g per liter of water',
+          application: 'Targeted spray',
+          frequency: 'Every 10-14 days',
+          safetyPeriod: '7 days before harvest'
+        }
+      ],
+      cultural: [
+        'Early planting to avoid peak infestation',
+        'Crop rotation with non-host crops',
+        'Deep ploughing to destroy pupae',
+        'Use of trap crops like Napier grass'
+      ]
+    },
+    prevention: [
+      'Regular field monitoring',
+      'Maintain field hygiene',
+      'Use certified seeds',
+      'Encourage natural enemies'
+    ],
+    severity: 'high' as const
+  },
+  {
+    id: 'aphids',
+    name: 'Aphids',
+    type: 'pest' as const,
+    scientificName: 'Aphis spp.',
+    affectedCrops: ['Tobacco', 'Cotton', 'Vegetables', 'Legumes'],
+    description: 'Small, soft-bodied insects that suck plant sap and transmit viral diseases.',
+    symptoms: [
+      'Yellowing and curling of leaves',
+      'Stunted plant growth',
+      'Honeydew secretion on leaves',
+      'Sooty mold development'
+    ],
+    identificationFeatures: [
+      'Small, pear-shaped insects',
+      'Green, black, or brown coloration',
+      'Clustered on young shoots and leaves',
+      'Winged and wingless forms present'
+    ],
+    treatments: {
+      organic: [
+        {
+          method: 'Soap spray',
+          dosage: '10ml liquid soap per liter of water',
+          application: 'Spray directly on aphids',
+          frequency: 'Every 3-5 days'
+        },
+        {
+          method: 'Neem oil',
+          dosage: '5ml per liter of water',
+          application: 'Foliar spray',
+          frequency: 'Weekly'
+        }
+      ],
+      chemical: [
+        {
+          product: 'Imidacloprid 200 SL',
+          dosage: '0.5ml per liter of water',
+          application: 'Foliar spray',
+          frequency: 'As needed',
+          safetyPeriod: '7 days before harvest'
+        }
+      ],
+      cultural: [
+        'Remove weeds that harbor aphids',
+        'Use reflective mulches',
+        'Encourage beneficial insects',
+        'Avoid excessive nitrogen fertilization'
+      ]
+    },
+    prevention: [
+      'Regular inspection of plants',
+      'Use yellow sticky traps',
+      'Maintain proper plant spacing',
+      'Remove infected plant debris'
+    ],
+    severity: 'medium' as const
+  },
+  {
+    id: 'striga',
+    name: 'Striga (Witchweed)',
+    type: 'weed' as const,
+    scientificName: 'Striga asiatica',
+    affectedCrops: ['Maize', 'Sorghum', 'Millet', 'Rice'],
+    description: 'A parasitic weed that attaches to crop roots and severely reduces yields.',
+    symptoms: [
+      'Stunted crop growth',
+      'Yellowing and wilting of crops',
+      'Purple or pink flowering weeds',
+      'Reduced grain production'
+    ],
+    identificationFeatures: [
+      'Small purple, pink, or white flowers',
+      'Narrow, lance-shaped leaves',
+      'Grows 20-100cm tall',
+      'Emerges from soil near host plants'
+    ],
+    treatments: {
+      organic: [
+        {
+          method: 'Hand weeding',
+          dosage: 'N/A',
+          application: 'Remove before flowering',
+          frequency: 'Every 2-3 weeks during growing season'
+        },
+        {
+          method: 'Crop rotation',
+          dosage: 'N/A',
+          application: 'Plant non-host crops for 2-3 seasons',
+          frequency: 'Rotate every season'
+        }
+      ],
+      chemical: [
+        {
+          product: '2,4-D Amine',
+          dosage: '2-3ml per liter of water',
+          application: 'Spot treatment on emerged striga',
+          frequency: 'As needed',
+          safetyPeriod: 'Avoid drift to crops'
+        }
+      ],
+      cultural: [
+        'Use striga-resistant varieties',
+        'Intercropping with legumes',
+        'Proper fertilization',
+        'Early planting'
+      ]
+    },
+    prevention: [
+      'Use certified, clean seeds',
+      'Maintain soil fertility',
+      'Practice crop rotation',
+      'Use resistant varieties'
+    ],
+    severity: 'high' as const
+  },
+  {
+    id: 'tobacco-mosaic-virus',
+    name: 'Tobacco Mosaic Virus',
+    type: 'disease' as const,
+    scientificName: 'Tobacco mosaic virus (TMV)',
+    affectedCrops: ['Tobacco', 'Tomatoes', 'Peppers'],
+    description: 'A viral disease that causes mosaic patterns on leaves and reduces plant vigor.',
+    symptoms: [
+      'Mosaic pattern on leaves',
+      'Light and dark green patches',
+      'Leaf distortion and curling',
+      'Stunted plant growth'
+    ],
+    identificationFeatures: [
+      'Characteristic mosaic pattern',
+      'No insect vectors required',
+      'Spreads through mechanical contact',
+      'Affects leaf coloration'
+    ],
+    treatments: {
+      organic: [
+        {
+          method: 'Remove infected plants',
+          dosage: 'N/A',
+          application: 'Uproot and destroy infected plants',
+          frequency: 'Immediately upon detection'
+        }
+      ],
+      chemical: [
+        {
+          product: 'No chemical cure available',
+          dosage: 'N/A',
+          application: 'Focus on prevention',
+          frequency: 'N/A',
+          safetyPeriod: 'N/A'
+        }
+      ],
+      cultural: [
+        'Use virus-free seeds',
+        'Sanitize tools between plants',
+        'Control weeds that harbor virus',
+        'Avoid working with wet plants'
+      ]
+    },
+    prevention: [
+      'Use resistant varieties',
+      'Maintain field hygiene',
+      'Avoid smoking in tobacco fields',
+      'Disinfect hands and tools'
+    ],
+    severity: 'medium' as const
+  }
+];
+
+// Sample AI identification results for demonstration
+export const sampleIdentificationResults = [
+  {
+    id: 'result-1',
+    confidence: 0.92,
+    identifiedPest: 'fall-armyworm',
+    timestamp: new Date().toISOString(),
+    imageUri: 'sample-image-1',
+    location: { latitude: -17.8292, longitude: 31.0522 }, // Harare coordinates
+    severity: 'high' as const,
+    recommendations: [
+      'Apply Bt spray immediately',
+      'Monitor field daily',
+      'Consider chemical treatment if infestation spreads'
+    ]
+  },
+  {
+    id: 'result-2',
+    confidence: 0.87,
+    identifiedPest: 'aphids',
+    timestamp: new Date().toISOString(),
+    imageUri: 'sample-image-2',
+    location: { latitude: -17.8292, longitude: 31.0522 },
+    severity: 'medium' as const,
+    recommendations: [
+      'Use soap spray treatment',
+      'Encourage beneficial insects',
+      'Remove weeds around field'
+    ]
+  }
+];

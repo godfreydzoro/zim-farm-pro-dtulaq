@@ -20,6 +20,14 @@ export default function HomeScreen() {
   const quickActions = [
     {
       id: '1',
+      title: 'Pest Identification',
+      description: 'AI-powered pest detection',
+      icon: 'camera.fill',
+      color: colors.error,
+      onPress: () => router.push('/pest-identification')
+    },
+    {
+      id: '2',
       title: 'Field Mapping',
       description: 'Map your field boundaries',
       icon: 'map.fill',
@@ -27,7 +35,7 @@ export default function HomeScreen() {
       onPress: () => router.push('/(tabs)/field-mapping')
     },
     {
-      id: '2',
+      id: '3',
       title: 'Crop Calendar',
       description: 'View planting schedules',
       icon: 'calendar',
@@ -35,20 +43,12 @@ export default function HomeScreen() {
       onPress: () => router.push('/crops-calendar')
     },
     {
-      id: '3',
+      id: '4',
       title: 'Market Prices',
       description: 'Check current crop prices',
       icon: 'chart.line.uptrend.xyaxis',
       color: colors.success,
       onPress: () => router.push('/market-prices')
-    },
-    {
-      id: '4',
-      title: 'Extension Services',
-      description: 'Find nearby agricultural offices',
-      icon: 'building.2.fill',
-      color: colors.info,
-      onPress: () => router.push('/extension-services')
     }
   ];
 

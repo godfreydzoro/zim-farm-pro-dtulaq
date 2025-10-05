@@ -10,7 +10,7 @@ import { cropsCalendar } from '@/data/zimbabweData';
 export default function CropDetailsScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
-  const [activeTab, setActiveTab] = useState<'overview' | 'calendar' | 'practices' | 'market'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'calendar' | 'practices' | 'market' | 'pests'>('overview');
 
   const cropName = params.cropName as string;
   const cropCalendar = cropsCalendar.find(c => c.crop === cropName);
@@ -77,6 +77,7 @@ export default function CropDetailsScreen() {
     { key: 'overview', label: 'Overview', icon: 'info.circle' },
     { key: 'calendar', label: 'Calendar', icon: 'calendar' },
     { key: 'practices', label: 'Practices', icon: 'list.bullet' },
+    { key: 'pests', label: 'Pests', icon: 'exclamationmark.triangle' },
     { key: 'market', label: 'Market', icon: 'chart.line.uptrend.xyaxis' }
   ];
 
@@ -205,11 +206,148 @@ export default function CropDetailsScreen() {
     </View>
   );
 
+  const renderPests = () => (
+    <View>
+      {/* Common Pests */}
+      <View style={[commonStyles.card, styles.pestsCard]}>
+        <View style={styles.pestsHeader}>
+          <IconSymbol name="exclamationmark.triangle" size={24} color={colors.warning} />
+          <Text style={[commonStyles.subtitle, styles.pestsTitle]}>Common Pests & Diseases</Text>
+        </View>
+        
+        {cropName === 'Maize' && (
+          <>
+            <TouchableOpacity 
+              style={styles.pestItem}
+              onPress={() => router.push({
+                pathname: '/pest-results',
+                params: { pestId: 'fall-armyworm', confidence: '0.95', severity: 'high' }
+              })}
+            >
+              <View style={styles.pestInfo}>
+                <Text style={styles.pestName}>Fall Armyworm</Text>
+                <Text style={styles.pestDescription}>Destructive caterpillar that feeds on leaves and stems</Text>
+              </View>
+              <View style={[styles.severityBadge, { backgroundColor: colors.error }]}>
+                <Text style={styles.severityText}>HIGH</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.pestItem}
+              onPress={() => router.push({
+                pathname: '/pest-results',
+                params: { pestId: 'striga', confidence: '0.90', severity: 'high' }
+              })}
+            >
+              <View style={styles.pestInfo}>
+                <Text style={styles.pestName}>Striga (Witchweed)</Text>
+                <Text style={styles.pestDescription}>Parasitic weed that severely reduces yields</Text>
+              </View>
+              <View style={[styles.severityBadge, { backgroundColor: colors.error }]}>
+                <Text style={styles.severityText}>HIGH</Text>
+              </View>
+            </TouchableOpacity>
+          </>
+        )}
+
+        {cropName === 'Tobacco' && (
+          <>
+            <TouchableOpacity 
+              style={styles.pestItem}
+              onPress={() => router.push({
+                pathname: '/pest-results',
+                params: { pestId: 'aphids', confidence: '0.88', severity: 'medium' }
+              })}
+            >
+              <View style={styles.pestInfo}>
+                <Text style={styles.pestName}>Aphids</Text>
+                <Text style={styles.pestDescription}>Small insects that suck plant sap and transmit viruses</Text>
+              </View>
+              <View style={[styles.severityBadge, { backgroundColor: colors.warning }]}>
+                <Text style={styles.severityText}>MEDIUM</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.pestItem}
+              onPress={() => router.push({
+                pathname: '/pest-results',
+                params: { pestId: 'tobacco-mosaic-virus', confidence: '0.85', severity: 'medium' }
+              })}
+            >
+              <View style={styles.pestInfo}>
+                <Text style={styles.pestName}>Tobacco Mosaic Virus</Text>
+                <Text style={styles.pestDescription}>Viral disease causing mosaic patterns on leaves</Text>
+              </View>
+              <View style={[styles.severityBadge, { backgroundColor: colors.warning }]}>
+                <Text style={styles.severityText}>MEDIUM</Text>
+              </View>
+            </TouchableOpacity>
+          </>
+        )}
+
+        {(cropName !== 'Maize' && cropName !== 'Tobacco') && (
+          <View style={styles.noPestsInfo}>
+            <IconSymbol name="checkmark.circle" size={32} color={colors.success} />
+            <Text style={styles.noPestsText}>
+              No major pest alerts for {cropName} at this time. Continue monitoring your crops regularly.
+            </Text>
+          </View>
+        )}
+      </View>
+
+      {/* AI Identification CTA */}
+      <View style={[commonStyles.card, styles.identificationCard]}>
+        <View style={styles.identificationHeader}>
+          <IconSymbol name="camera.fill" size={24} color={colors.primary} />
+          <Text style={[commonStyles.subtitle, styles.identificationTitle]}>Pest Identification</Text>
+        </View>
+        <Text style={commonStyles.text}>
+          Spotted something unusual on your {cropName} plants? Use our AI-powered identification tool to get instant diagnosis and treatment recommendations.
+        </Text>
+        <TouchableOpacity
+          style={styles.identificationButton}
+          onPress={() => router.push('/pest-identification')}
+        >
+          <IconSymbol name="camera.fill" size={20} color={colors.card} />
+          <Text style={styles.identificationButtonText}>Identify Pest or Disease</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Prevention Tips */}
+      <View style={[commonStyles.card, styles.preventionCard]}>
+        <Text style={[commonStyles.subtitle, styles.preventionTitle]}>Prevention Tips for {cropName}</Text>
+        
+        <View style={styles.preventionTip}>
+          <IconSymbol name="eye" size={16} color={colors.primary} />
+          <Text style={styles.preventionText}>Regular field monitoring - inspect crops weekly</Text>
+        </View>
+        
+        <View style={styles.preventionTip}>
+          <IconSymbol name="leaf" size={16} color={colors.success} />
+          <Text style={styles.preventionText}>Maintain field hygiene and remove crop residues</Text>
+        </View>
+        
+        <View style={styles.preventionTip}>
+          <IconSymbol name="arrow.triangle.2.circlepath" size={16} color={colors.warning} />
+          <Text style={styles.preventionText}>Practice crop rotation to break pest cycles</Text>
+        </View>
+        
+        <View style={styles.preventionTip}>
+          <IconSymbol name="drop" size={16} color={colors.primary} />
+          <Text style={styles.preventionText}>Avoid over-watering and ensure proper drainage</Text>
+        </View>
+      </View>
+    </View>
+  );
+
   const renderContent = () => {
     switch (activeTab) {
       case 'overview': return renderOverview();
       case 'calendar': return renderCalendar();
       case 'practices': return renderPractices();
+      case 'pests': return renderPests();
       case 'market': return renderMarket();
       default: return renderOverview();
     }
@@ -442,6 +580,107 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginRight: 8,
+  },
+  pestsCard: {
+    marginBottom: 16,
+  },
+  pestsHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  pestsTitle: {
+    marginLeft: 8,
+  },
+  pestItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    backgroundColor: colors.highlight,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  pestInfo: {
+    flex: 1,
+  },
+  pestName: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  pestDescription: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    lineHeight: 18,
+  },
+  severityBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    marginLeft: 12,
+  },
+  severityText: {
+    color: colors.card,
+    fontSize: 10,
+    fontWeight: '600',
+  },
+  noPestsInfo: {
+    alignItems: 'center',
+    paddingVertical: 24,
+  },
+  noPestsText: {
+    textAlign: 'center',
+    marginTop: 12,
+    color: colors.textSecondary,
+    lineHeight: 20,
+  },
+  identificationCard: {
+    backgroundColor: colors.highlight,
+    marginBottom: 16,
+  },
+  identificationHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  identificationTitle: {
+    marginLeft: 8,
+  },
+  identificationButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.primary,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginTop: 12,
+  },
+  identificationButtonText: {
+    color: colors.card,
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 8,
+  },
+  preventionCard: {
+    marginBottom: 16,
+  },
+  preventionTitle: {
+    marginBottom: 16,
+  },
+  preventionTip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  preventionText: {
+    marginLeft: 12,
+    color: colors.text,
+    flex: 1,
+    lineHeight: 20,
   },
   bottomSpacing: {
     height: Platform.OS === 'ios' ? 20 : 100,
