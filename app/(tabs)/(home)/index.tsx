@@ -32,7 +32,7 @@ export default function HomeScreen() {
       description: 'View planting schedules',
       icon: 'calendar',
       color: colors.accent,
-      onPress: () => Alert.alert('Crop Calendar', 'This would show detailed planting and harvesting calendars for different crops based on Zimbabwe\'s growing seasons.')
+      onPress: () => router.push('/crops-calendar')
     },
     {
       id: '3',
@@ -40,7 +40,7 @@ export default function HomeScreen() {
       description: 'Check current crop prices',
       icon: 'chart.line.uptrend.xyaxis',
       color: colors.success,
-      onPress: () => Alert.alert('Market Prices', 'Current market prices:\n• Maize: $320/tonne (+5%)\n• Tobacco: $4200/tonne (+12%)\n• Cotton: $1800/tonne (-3%)\n• Soybean: $450/tonne (+8%)')
+      onPress: () => router.push('/market-prices')
     },
     {
       id: '4',
@@ -48,7 +48,7 @@ export default function HomeScreen() {
       description: 'Find nearby agricultural offices',
       icon: 'building.2.fill',
       color: colors.info,
-      onPress: () => Alert.alert('Extension Services', 'This would show nearby agricultural extension offices, input suppliers, and contact information for agricultural advisors.')
+      onPress: () => router.push('/extension-services')
     }
   ];
 
@@ -126,10 +126,18 @@ export default function HomeScreen() {
             <CropCard 
               key={crop.id} 
               crop={crop} 
-              onPress={() => Alert.alert(
-                crop.name, 
-                `Planting Season: ${crop.plantingMonth}\nHarvest Season: ${crop.harvestMonth}\nSoil Type: ${crop.soilType}\nWater Requirement: ${crop.waterRequirement}\n\nStatus: ${crop.status.charAt(0).toUpperCase() + crop.status.slice(1)}`
-              )}
+              onPress={() => router.push({
+                pathname: '/crop-details',
+                params: { 
+                  cropId: crop.id,
+                  cropName: crop.name,
+                  plantingMonth: crop.plantingMonth,
+                  harvestMonth: crop.harvestMonth,
+                  soilType: crop.soilType,
+                  waterRequirement: crop.waterRequirement,
+                  status: crop.status
+                }
+              })}
             />
           ))}
         </View>

@@ -7,8 +7,10 @@ import { IconSymbol } from '@/components/IconSymbol';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import CropCard from '@/components/CropCard';
 import { sampleCrops, agroEcologicalZones } from '@/data/zimbabweData';
+import { useRouter } from 'expo-router';
 
 export default function CropsScreen() {
+  const router = useRouter();
   const [selectedZone, setSelectedZone] = useState('Zone II');
   const [filterStatus, setFilterStatus] = useState<'all' | 'optimal' | 'caution' | 'not-recommended'>('all');
 
@@ -34,24 +36,18 @@ export default function CropsScreen() {
   );
 
   const showCropDetails = (crop: any) => {
-    Alert.alert(
-      `${crop.name} Details`,
-      `Planting Season: ${crop.plantingMonth}
-Harvest Season: ${crop.harvestMonth}
-Soil Type: ${crop.soilType}
-Water Requirement: ${crop.waterRequirement}
-Status: ${crop.status.charAt(0).toUpperCase() + crop.status.slice(1)}
-
-Best Practices:
-• Plant during recommended months
-• Ensure proper soil preparation
-• Monitor for pests and diseases
-• Follow irrigation schedule`,
-      [
-        { text: 'View Planting Guide', onPress: () => Alert.alert('Planting Guide', `Detailed planting guide for ${crop.name} would be shown here.`) },
-        { text: 'Close', style: 'cancel' }
-      ]
-    );
+    router.push({
+      pathname: '/crop-details',
+      params: { 
+        cropId: crop.id,
+        cropName: crop.name,
+        plantingMonth: crop.plantingMonth,
+        harvestMonth: crop.harvestMonth,
+        soilType: crop.soilType,
+        waterRequirement: crop.waterRequirement,
+        status: crop.status
+      }
+    });
   };
 
   return (

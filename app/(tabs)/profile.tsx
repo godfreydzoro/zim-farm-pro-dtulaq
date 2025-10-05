@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { IconSymbol } from '@/components/IconSymbol';
 import { colors, commonStyles } from '@/styles/commonStyles';
 
 export default function ProfileScreen() {
+  const router = useRouter();
   const [farmerData, setFarmerData] = useState({
     name: 'John Mukamuri',
     location: 'Harare Province',
@@ -44,28 +45,28 @@ export default function ProfileScreen() {
       description: 'English, Shona, Ndebele',
       icon: 'globe',
       color: colors.primary,
-      onPress: () => Alert.alert('Language Settings', 'Choose your preferred language:\n• English\n• Shona\n• Ndebele')
+      onPress: () => router.push('/language-settings')
     },
     {
       title: 'Notification Preferences',
       description: 'Weather alerts, crop reminders',
       icon: 'bell.fill',
       color: colors.accent,
-      onPress: () => Alert.alert('Notifications', 'Configure notifications for:\n• Weather alerts\n• Planting reminders\n• Market price updates\n• Pest/disease warnings')
+      onPress: () => router.push('/notification-settings')
     },
     {
       title: 'Data & Sync',
       description: 'Offline mode, data backup',
       icon: 'icloud.fill',
       color: colors.info,
-      onPress: () => Alert.alert('Data & Sync', 'Manage your data:\n• Enable offline mode\n• Backup farm data\n• Sync across devices')
+      onPress: () => router.push('/data-sync-settings')
     },
     {
       title: 'Extension Services',
       description: 'Connect with agricultural advisors',
       icon: 'person.2.fill',
       color: colors.success,
-      onPress: () => Alert.alert('Extension Services', 'Connect with:\n• Local agricultural extension officers\n• Veterinary services\n• Input suppliers\n• Market cooperatives')
+      onPress: () => router.push('/extension-services')
     }
   ];
 
@@ -177,13 +178,13 @@ export default function ProfileScreen() {
           <View style={styles.appInfoButtons}>
             <TouchableOpacity 
               style={styles.appInfoButton}
-              onPress={() => Alert.alert('Help & Support', 'Access help documentation, tutorials, and contact support team.')}
+              onPress={() => router.push('/help-support')}
             >
               <Text style={styles.appInfoButtonText}>Help & Support</Text>
             </TouchableOpacity>
             <TouchableOpacity 
               style={styles.appInfoButton}
-              onPress={() => Alert.alert('Privacy Policy', 'View our privacy policy and data usage terms.')}
+              onPress={() => router.push('/privacy-policy')}
             >
               <Text style={styles.appInfoButtonText}>Privacy Policy</Text>
             </TouchableOpacity>
